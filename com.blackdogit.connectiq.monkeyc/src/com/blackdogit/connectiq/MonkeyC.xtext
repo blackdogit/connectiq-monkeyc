@@ -1,0 +1,212 @@
+grammar com.blackdogit.connectiq.MonkeyC hidden(WS, SL_COMMENT)
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+generate monkeyC "http://www.blackdogit.com/schemas/connectiq-monkeyc"
+
+File:
+	decls+=Decl*;
+
+terminal BOOL returns ecore::EBoolean:
+	'true' | 'false';
+
+terminal ID returns ecore::EString:
+	('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
+
+	// TODO correct expression
+terminal DOUBLE returns ecore::EDouble:
+	('0'..'9')+ '.' ('0'..'9')+ | 'NaN';
+
+terminal INT returns ecore::EInt:
+	('0'..'9')+;
+
+terminal STRING returns ecore::EString:
+	'"' ('\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\' | '"'))* '"';
+
+terminal DOC_COMMENT:
+	'//!' !('\n' | '\r')* ('\r'? '\n')?;
+
+terminal SL_COMMENT:
+	'//' !('\n' | '\r')* ('\r'? '\n')?;
+
+terminal WS:
+	(' ' | '\t' | '\r' | '\n')+;
+
+terminal ANY_OTHER:
+	.;
+
+UsingDecl:
+	'using' module=QualifiedName ('as' alias=ID)? ';';
+
+QualifiedName:
+	ID ('.' ID)*;
+
+Decl:
+	UsingDecl |
+	VarDecl |
+	ConstDecl |
+	EnumDecl |
+	ClassDecl |
+	FunctionDecl |
+	ModuleDecl;
+
+Annotation:
+	'(' symbols+=Symbol+ ')';
+
+Symbol:
+	':' name=ID;
+
+VarDecl:
+	docs+=DOC_COMMENT*
+	(annotation=Annotation)?
+	(static?='static'? & ^hidden?='hidden'?) 'var' vars+=VarDeclPart (',' vars+=VarDeclPart)* ';';
+
+VarDeclPart:
+	docs+=DOC_COMMENT*
+	name=ID ('=' expr=Expr)?;
+
+ConstDecl:
+	docs+=DOC_COMMENT*
+	(annotation=Annotation)?
+	(static?='static'? & ^hidden?='hidden'?) 'const' vars+=VarDeclPart (',' vars+=VarDeclPart)* ';';
+
+EnumDecl:
+	docs+=DOC_COMMENT*
+	(annotation=Annotation)?
+	(static?='static'? & ^hidden?='hidden'?) 'enum' '{' values+=ID (',' values+=ID)* '}';
+
+ClassDecl:
+	docs+=DOC_COMMENT*
+	(annotation=Annotation)?
+	^hidden?='hidden'? 'class' name=ID ('extends' superType=QualifiedName)?
+	'{' decls+=Decl* '}';
+
+ModuleDecl:
+	docs+=DOC_COMMENT*
+	(annotation=Annotation)?
+	^hidden?='hidden'? 'module' name=ID '{' decls+=Decl* '}';
+
+	// TODO doc
+FunctionDecl:
+	docs+=DOC_COMMENT*
+	(annotation=Annotation)?
+	(static?='static'? & ^hidden?='hidden'? & native?='native'?) 'function' name=ID '(' (args+=ID (',' args+=ID)*)? ')'
+	block=Block;
+
+Block:
+	'{' {Block} statements+=Statement* '}';
+
+Statement:
+	VarDecl |
+//	{ExprStatement} expr=Expr ';' |
+	{AssignmentStatement} lvalue=Expr (assignOp=('='|'+='|'-='|'*='|'/='|'%='|'^='|'>>='|'<<='|'&='|'|=') expr=Expr)? ';' |
+	ForStatement |
+	WhileStatement |
+	DoWhileStatement |
+	TryStatement |
+	BreakStatement |
+	ReturnStatement |
+	SwichStatement |
+	ThrowStatement;
+	//	{FunctionStatement} (('(' expr=Expr ')') | lvalue=LValue '.')? name=ID args=Args ';' |
+Assignment:
+	name=LValue '=' expr=Expr;
+
+IfStatement returns Statement:
+	'if' '(' expr=Expr ')' trueBlock=Block ('else' (falseBlock=Block | elsif=IfStatement))?;
+
+ForStatement returns Statement:
+	'for' '(' (initAssignment=Assignment | ('var' initVars+=VarDeclPart (',' initVars+=VarDeclPart)*)) ';' expr=Expr ';'
+	nextAssignment=Assignment ')' block=Block;
+
+WhileStatement returns Statement:
+	'while' '(' expr=Expr ')' block=Block;
+
+DoWhileStatement returns Statement:
+	'do' block=Block 'while' '(' expr=Expr ')' ';';
+
+TryStatement returns Statement:
+	'try' block=Block catches+=CatchStatement* ('finally' finally=Block)?;
+
+// TODO multiple catch (ex instanceof Type)...
+CatchStatement returns Statement:
+	'catch' '(' var=ID ('instanceof' QualifiedName)? ')' block=Block;
+
+BreakStatement returns Statement:
+	{BreakStatement} 'break' ';';
+
+ReturnStatement returns Statement:
+	'return' expr=Expr ';';
+
+ThrowStatement returns Statement:
+	'throw' expr=Expr ';';
+
+SwichStatement returns Statement:
+	'switch' '(' Expr ')' '{' cases+=CaseStatement* '}';
+
+// TODO 'case' 'instanceof' Type
+CaseStatement:
+	{CaseStatement} ('case' caseExpr=Expr | 'default') ':' statements+=Statement*;
+
+LValue:
+	root=ID parts+=LValuePart*;
+
+LValuePart:
+	'.' name=ID | '[' index=Expr ']';
+
+Expr returns Expr:
+	Expr5 ({OperExpr.left=current} op=('||' | 'or') right=Expr)?;
+
+Expr5 returns Expr:
+	Expr4 ({OperExpr.left=current} op=('&&' | 'and') right=Expr5)?
+;
+
+Expr4 returns Expr:
+	Expr3 ({OperExpr.left=current} op=('<' | '<=' | '>' | '>=' | '==' | '!=') right=Expr4)?
+;
+
+Expr3 returns Expr:
+	Expr2 ({OperExpr.left=current} op=('+' | '-' | '|' | '^') right=Expr3)?
+;
+
+Expr2 returns Expr:
+	Expr1 ({OperExpr.left=current} op=('*' | '/' | '%' | '&' | '<<' | '>>') right=Expr2)?
+;
+
+Expr1 returns Expr:
+	Term ({Term.root=current} parts+=TermPart+)?;
+
+// Functions/Methods are not first-class objects, and invocation therefore requires a name
+TermPart:
+	{ObjectSelection} '.' name=ID |
+	{Funcion} '.' name=ID args=Args |
+	{ArrayIndex} '[' index=Expr ']';
+
+Term returns Expr:
+	Constant |
+	CreateObject |
+	{Variable} name=ID |
+	{Funcion} name=ID args=Args |
+	{UnaryExpr} op=('!' | '~') right=Term |
+	'(' Expr ')';
+
+CreateObject returns Expr:
+	{ArrayExpr} 'new' '[' size=Expr ']' |
+	{ArrayExpr} '[' (elements+=Expr (',' elements+=Expr)*)? ']' |
+	{DictionaryExpr} '{' (elements+=DictionaryElement (',' elements+=DictionaryElement)*)? '}' |
+	{ObjectExpr} 'new' type=LValue args=Args;
+
+Args:
+	'(' {Args} (args+=Expr (',' args+=Expr)*)? ')';
+
+Constant returns Expr:
+	{NullExpr} 'null' |
+	{IntExpr} value=INT |
+	{DoubleExpr} value=DOUBLE |
+	{StringExpr} value=STRING |
+	{SymbolExpr} value=Symbol |
+	{BooleanExpr} value=BOOL;
+
+DictionaryElement:
+	key=Expr '=>' value=Expr;
+
+// eof

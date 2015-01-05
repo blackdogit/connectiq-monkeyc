@@ -1,0 +1,810 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.blackdogit.connectiq.monkeyc</groupId>
+	<artifactId>com.blackdogit.connectiq.monkeyc.parent</artifactId>
+	<version>1-SNAPSHOT</version>
+
+	<packaging>pom</packaging>
+
+	<!-- this is the parent POM from which all modules inherit common settings -->
+	<properties>
+		<product.version>1.0.1</product.version>
+
+		<!-- Build number: set by CI. -->
+		<!-- <build.number>(unknown)</build.number> -->
+
+		<!-- Build type: set via profile -->
+		<build.type>Unknown/build type</build.type>
+
+		<project.source.sourceEncoding>UTF-8</project.source.sourceEncoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<tycho.version>0.22.0</tycho.version>
+		<tycho-extras.version>${tycho.version}</tycho-extras.version>
+
+		<xtext.version>2.7.2</xtext.version><!-- TODO: -> xtext -->
+
+		<!-- The version of the Eclipse platform -->
+		<eclipse.platform.version>4.4</eclipse.platform.version>
+
+		<!-- Test Specific Flags for Java - see *.tests bundles -->
+		<java.test.args /> <!-- for the default case -->
+
+		<!-- OS Specific Flags for Java - see profiles below -->
+		<java.os.args /> <!-- for the default case -->
+
+		<!-- Debug specific Flags for Java - see profiles below -->
+		<java.debug.args /> <!-- for the default case -->
+		<java.debug.host>localhost</java.debug.host>
+
+		<!-- Memory specific Flags for Java - see profiles below -->
+		<java.mem.args /> <!-- for the default case -->
+
+		<tycho.localArtifacts>false</tycho.localArtifacts>
+
+		<!-- The architectures in the target environment. Must be in sync with 
+			the environments clause of target-platform-configuration. On the form os/ws/arch,... -->
+		<target.archs>ALL</target.archs>
+
+		<!-- The base URL of the update site -->
+		<base.update.site.url></base.update.site.url>
+		<!-- The folder that corresponds to base.update.site.url -->
+		<!-- This property may only be set when calling Maven as it is used in 
+			profile activations. -->
+		<base.update.site.folder></base.update.site.folder>
+
+		<update.site.server.update.folder>server/update</update.site.server.update.folder>
+		<update.site.wb.download.folder>wb/download</update.site.wb.download.folder>
+		<update.site.wb.update.folder>wb/update</update.site.wb.update.folder>
+
+		<!-- The update site used in AWB to update the server -->
+		<!-- Overriden for specific build types -->
+		<!-- Communicated to application via plugin_customization.ini -->
+		<server.update.site.url>${base.update.site.url}/${update.site.server.update.folder}</server.update.site.url>
+
+		<!-- The tests to run is different build types -->
+		<!-- See the profiles ide, ci, nightly and release below -->
+		<surefire.exclude.tests>NONE</surefire.exclude.tests>
+
+		<!-- -Djava.ext.dirs argument used for the MacOSX platform - see profiles 
+			below. -->
+		<java.ext.dirs.args />
+	</properties>
+
+	<organization>
+		<name>Black Dog IT</name>
+		<url>http://www.blackdogit.com/</url>
+	</organization>
+	<url>https://github.com/tonnymadsen/connectiq-monkeyc/</url>
+	<inceptionYear>2014</inceptionYear>
+
+	<licenses>
+		<license>
+			<name>EPL</name>
+		</license>
+	</licenses>
+
+	<issueManagement>
+		<system>Github</system>
+		<url>https://github.com/tonnymadsen/connectiq-monkeyc/issues</url>
+	</issueManagement>
+
+	<ciManagement>
+		<system>Travis</system>
+		<url>...</url>
+	</ciManagement>
+
+	<pluginRepositories>
+		<!-- <pluginRepository> <id>tycho-staged</id> <url>https://oss.sonatype.org/content/repositories/orgeclipsetycho-240/</url> 
+			</pluginRepository> -->
+		<pluginRepository>
+			<id>central</id>
+			<url>http://repo1.maven.org/maven2/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>tycho-snapshots</id>
+			<url>https://oss.sonatype.org/content/groups/public/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>xtend</id>
+			<url>http://build.eclipse.org/common/xtend/maven/</url>
+		</pluginRepository>
+		<!-- Fornax Workflow Runner plugin -->
+		<pluginRepository>
+			<id>fornax</id>
+			<url>http://www.fornax-platform.org/m2/repository</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<build>
+		<plugins>
+			<plugin>
+				<!-- Enable tycho build extension -->
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<extensions>true</extensions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<resolver>p2</resolver>
+					<dependency-resolution>
+						<optionalDependencies>ignore</optionalDependencies>
+					</dependency-resolution>
+
+					<ignoreTychoRepositories>true</ignoreTychoRepositories>
+					<includePackedArtifacts>true</includePackedArtifacts>
+
+					<target>
+						<artifact>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>com.blackdogit.connectiq.monkeyc.target</artifactId>
+							<version>1-SNAPSHOT</version>
+							<classifier>base-${eclipse.platform.version}</classifier>
+						</artifact>
+					</target>
+					<environments>
+						<!-- IF THIS LIST CHANGES, REMEMBER TO UPDATE ....tests.utils.ARCH.java -->
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86_64</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>1.3.1</version>
+			</plugin>
+
+			<!-- Pick a port for the server UI -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>reserve-network-port</id>
+						<goals>
+							<goal>reserve-network-port</goal>
+						</goals>
+						<phase>process-resources</phase>
+						<configuration>
+							<portNames>
+								<portName>com.blackdogit...uiPort</portName>
+							</portNames>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Prepare for pack200 -->
+			<!-- Cannot be disabled -->
+			<plugin>
+				<groupId>org.eclipse.tycho.extras</groupId>
+				<artifactId>tycho-pack200a-plugin</artifactId>
+				<version>${tycho-extras.version}</version>
+				<executions>
+					<execution>
+						<id>pack200-normalize</id>
+						<goals>
+							<goal>normalize</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Sign all bundles -->
+			<!-- Controlled in profiles via jarsigner.skip -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jarsigner-plugin</artifactId>
+				<version>1.2</version>
+				<executions>
+					<execution>
+						<id>sign</id>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+				<configuration>
+					<keystore>../com.blackdogit.connectiq.monkyc.parent/keys/....p12</keystore>
+					<alias>le-41f7f84a-9f84-430c-853e-a07bbf881217</alias>
+					<storetype>pkcs12</storetype>
+					<arguments>
+						<argument>-sigalg</argument>
+						<argument>MD5withRSA</argument>
+						<argument>-digestalg</argument>
+						<argument>SHA1</argument>
+					</arguments>
+				</configuration>
+			</plugin>
+
+			<!-- Perform pack200 -->
+			<!-- Cannot be disabled -->
+			<plugin>
+				<groupId>org.eclipse.tycho.extras</groupId>
+				<artifactId>tycho-pack200b-plugin</artifactId>
+				<version>${tycho-extras.version}</version>
+				<executions>
+					<execution>
+						<id>pack200-pack</id>
+						<goals>
+							<goal>pack</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Then, alter p2-metadata to make the .pack.gz artifact visible from 
+				other modules -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-p2-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<executions>
+					<execution>
+						<id>p2-metadata</id>
+						<goals>
+							<goal>p2-metadata</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+				<configuration>
+					<defaultP2Metadata>false</defaultP2Metadata>
+				</configuration>
+			</plugin>
+
+			<!-- Run findbugs -->
+			<!-- Controlled in profiles via findbugs.skip -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>2.5.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<findbugsXmlOutput>true</findbugsXmlOutput>
+					<failOnError>false</failOnError>
+					<maxHeap>1024</maxHeap>
+				</configuration>
+			</plugin>
+
+			<!-- Run PMD -->
+			<!-- Controlled in profiles via pmd.skip -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.0.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>cpd</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<minimumTokens>100</minimumTokens>
+					<format>xml</format>
+					<failOnViolation>false</failOnViolation>
+				</configuration>
+			</plugin>
+
+			<!-- Generate source plug-ins -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-source-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<executions>
+					<execution>
+						<id>plugin-source</id>
+						<goals>
+							<goal>plugin-source</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<sourceBundle>true</sourceBundle>
+				</configuration>
+			</plugin>
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.6</version>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.xtend</groupId>
+					<artifactId>xtend-maven-plugin</artifactId>
+					<version>${xtext.version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>compile</goal>
+								<goal>xtend-install-debug-info</goal>
+								<goal>testCompile</goal>
+								<goal>xtend-test-install-debug-info</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<outputDirectory>xtend-gen</outputDirectory>
+					</configuration>
+				</plugin>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-clean-plugin</artifactId>
+										<versionRange>[2.4.1,)</versionRange>
+										<goals>
+											<goal>clean</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.eclipse.tycho</groupId>
+										<artifactId>tycho-packaging-plugin</artifactId>
+										<versionRange>[0.14.1,)</versionRange>
+										<goals>
+											<goal>build-qualifier</goal>
+											<goal>validate-id</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.eclipse.tycho</groupId>
+										<artifactId>tycho-compiler-plugin</artifactId>
+										<versionRange>[0.14.1,)</versionRange>
+										<goals>
+											<goal>compile</goal>
+											<goal>validate-version</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-compiler-plugin</artifactId>
+										<versionRange>[3.1,)</versionRange>
+										<goals>
+											<goal>compile</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.eclipse.xtend</groupId>
+										<artifactId>xtend-maven-plugin</artifactId>
+										<versionRange>${xtext.version}</versionRange>
+										<goals>
+											<goal>compile</goal>
+											<goal>testCompile</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute>
+											<runOnIncremental>true</runOnIncremental>
+											<runOnConfiguration>true</runOnConfiguration>
+										</execute>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.mortbay.jetty</groupId>
+										<artifactId>jetty-jspc-maven-plugin</artifactId>
+										<versionRange>[8.1.12.v20130726,)</versionRange>
+										<goals>
+											<goal>jspc</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>build-helper-maven-plugin</artifactId>
+										<versionRange>[1.3,)</versionRange>
+										<goals>
+											<goal>reserve-network-port</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>exec-maven-plugin</artifactId>
+										<versionRange>[1.2.1,)</versionRange>
+										<goals>
+											<goal>java</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-packaging-plugin</artifactId>
+					<version>${tycho.version}</version>
+
+					<configuration>
+						<archive>
+							<manifestEntries>
+								<Built-By>${project.organization.name}</Built-By>
+								<!-- Override whatever is present... -->
+								<Bundle-Vendor>${project.organization.name}</Bundle-Vendor>
+							</manifestEntries>
+							<addMavenDescriptor>false</addMavenDescriptor>
+						</archive>
+
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-compiler-plugin</artifactId>
+					<version>${tycho.version}</version>
+					<configuration>
+						<compilerArgs>
+							<!-- See http://wiki.eclipse.org/Tycho/FAQ#How_to_configure_warning.2Ferror_settings_of_the_OSGi_compiler.3F -->
+							<arg>-warn:+discouraged,forbidden</arg>
+						</compilerArgs>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-surefire-plugin</artifactId>
+					<version>${tycho.version}</version>
+					<configuration>
+						<excludes>
+							<exclude>${surefire.exclude.tests}</exclude>
+							<exclude>**/Abstract*Test.java</exclude>
+							<exclude>**/Abstract*TestCase.java</exclude>
+							<exclude>**/*$*</exclude>
+						</excludes>
+						<includes>
+							<include>**/Test*.java</include>
+							<include>**/*Test.java</include>
+							<include>**/*TestCase.java</include>
+						</includes>
+						<argLine>${java.test.args} -Dcom.....uiPort=${com.....uiPort}
+							${java.mem.args} ${java.debug.args} ${java.os.args}
+							${java.ext.dirs.args}</argLine>
+
+						<environmentVariables combine.children="append">
+							<TARGET.ARCHS>${target.archs}</TARGET.ARCHS>
+
+							<!-- Work-around for problem with Tycho 0.20 and Windows 7 - see https://bugs.eclipse.org/bugs/show_bug.cgi?id=431793 -->
+							<TMP>c:\Temp</TMP>
+							<TEMP>c:\Temp</TEMP>
+							<TMPDIR>/usr/tmp</TMPDIR>
+							<PATH>${env.PATH}</PATH>
+							<!-- <JAVA_HOME>${env.JAVA_HOME}</JAVA_HOME> -->
+							<!-- <DISPLAY>${env.DISPLAY}</DISPLAY> -->
+						</environmentVariables>
+						<failIfNoTests>false</failIfNoTests>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>2.4.1</version>
+					<configuration>
+						<filesets combine.children="apend">
+							<fileset>
+								<directory>${basedir}/xtend-gen</directory>
+							</fileset>
+							<fileset>
+								<directory>${basedir}/src-gen</directory>
+							</fileset>
+							<fileset>
+								<directory>${basedir}/emf-gen</directory>
+							</fileset>
+							<fileset>
+								<directory>${basedir}/test-gen</directory>
+							</fileset>
+						</filesets>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>1.3</version>
+					<executions>
+						<execution>
+							<id>add-source</id>
+							<phase>generate-sources</phase>
+							<goals>
+								<goal>add-source</goal>
+							</goals>
+							<configuration>
+								<sources>
+									<source>${project.build.directory}/src-gen</source>
+								</sources>
+								<sources>
+									<source>${project.build.directory}/emf-gen</source>
+								</sources>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>ide</id>
+			<properties>
+				<build.type>IDE</build.type>
+				<build.number>IDE</build.number>
+				<target.archs>${osgi.os}/${osgi.ws}/${osgi.arch}</target.archs>
+				<clean.verbose>false</clean.verbose>
+
+				<!-- Filter out integration tests -->
+				<surefire.exclude.tests>**/*IntegrationTest.java</surefire.exclude.tests>
+
+				<!-- Skip some tools -->
+				<jarsigner.skip>true</jarsigner.skip>
+				<findbugs.skip>true</findbugs.skip>
+				<pmd.skip>true</pmd.skip>
+			</properties>
+
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>target-platform-configuration</artifactId>
+						<version>${tycho.version}</version>
+						<configuration>
+							<environments>
+								<environment>
+									<!-- Sets the target environment based on the current platform. 
+										See the profiles *-flags below. -->
+									<os>${osgi.os}</os>
+									<ws>${osgi.ws}</ws>
+									<arch>${osgi.arch}</arch>
+								</environment>
+							</environments>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>ci</id>
+			<properties>
+				<build.type>Continuous Integration</build.type>
+				<target.archs>win32/win32/x86_64,macosx/cocoa/x86_64</target.archs>
+				<!-- TODO not true! -->
+				<base.update.site.url>http://...</base.update.site.url>
+
+				<!-- Filter out integration tests -->
+				<surefire.exclude.tests>**/*IntegrationTest.java</surefire.exclude.tests>
+
+				<!-- Skip some tools -->
+				<jarsigner.skip>true</jarsigner.skip>
+				<findbugs.skip>true</findbugs.skip>
+				<pmd.skip>true</pmd.skip>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>target-platform-configuration</artifactId>
+						<version>${tycho.version}</version>
+						<configuration>
+							<environments>
+								<!-- IF THIS LIST CHANGES, REMEMBER TO UPDATE ARCH.java -->
+								<environment>
+									<os>win32</os>
+									<ws>win32</ws>
+									<arch>x86_64</arch>
+								</environment>
+								<environment>
+									<os>macosx</os>
+									<ws>cocoa</ws>
+									<arch>x86_64</arch>
+								</environment>
+							</environments>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>nightly</id>
+			<properties>
+				<build.type>Nightly</build.type>
+				<base.update.site.url>http://...</base.update.site.url>
+
+				<!-- Include integration tests -->
+				<surefire.exclude.tests>NONE</surefire.exclude.tests>
+
+				<!-- Skip some tools -->
+				<jarsigner.skip>false</jarsigner.skip>
+				<findbugs.skip>false</findbugs.skip>
+				<pmd.skip>false</pmd.skip>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>release</id>
+			<properties>
+				<build.type>Release</build.type>
+
+				<!-- Include integration tests -->
+				<surefire.exclude.tests>NONE</surefire.exclude.tests>
+
+				<!-- Skip some tools -->
+				<jarsigner.skip>false</jarsigner.skip>
+				<findbugs.skip>true</findbugs.skip>
+				<pmd.skip>true</pmd.skip>
+			</properties>
+		</profile>
+
+		<profile>
+			<!-- Manual profile used when debugging tests run in Maven - https://... -->
+			<id>debug</id>
+
+			<properties>
+				<java.debug.args>-Xdebug
+					-Xrunjdwp:transport=dt_socket,server=n,address=${java.debug.host}:5005</java.debug.args>
+			</properties>
+		</profile>
+
+		<!-- Platform specific profiles -->
+		<profile>
+			<id>macosx-jvm-flags</id>
+			<activation>
+				<os>
+					<family>mac</family>
+				</os>
+			</activation>
+			<properties>
+				<osgi.os>macosx</osgi.os>
+				<osgi.ws>cocoa</osgi.ws>
+				<osgi.arch>x86_64</osgi.arch>
+				<java.ext.dirs.args>-Djava.ext.dirs=${java.home}/lib/ext:/usr/lib/java</java.ext.dirs.args>
+			</properties>
+		</profile>
+		<profile>
+			<id>win32-64-flags</id>
+			<activation>
+				<os>
+					<family>windows</family>
+					<arch>x86_86</arch>
+				</os>
+			</activation>
+			<properties>
+				<osgi.os>win32</osgi.os>
+				<osgi.ws>win32</osgi.ws>
+				<osgi.arch>x86_64</osgi.arch>
+			</properties>
+		</profile>
+		<profile>
+			<id>win32-32-flags</id>
+			<activation>
+				<os>
+					<family>windows</family>
+					<arch>x86</arch>
+				</os>
+			</activation>
+			<properties>
+				<osgi.os>win32</osgi.os>
+				<osgi.ws>win32</osgi.ws>
+				<osgi.arch>x86_64</osgi.arch>
+			</properties>
+		</profile>
+		<profile>
+			<id>win32-amd64-flags</id>
+			<activation>
+				<os>
+					<family>windows</family>
+					<arch>amd64</arch>
+				</os>
+			</activation>
+			<properties>
+				<osgi.os>win32</osgi.os>
+				<osgi.ws>win32</osgi.ws>
+				<osgi.arch>x86_64</osgi.arch>
+			</properties>
+		</profile>
+		<profile>
+			<id>win32-amd32-flags</id>
+			<activation>
+				<os>
+					<family>windows</family>
+					<arch>amd32</arch>
+				</os>
+			</activation>
+			<properties>
+				<osgi.os>win32</osgi.os>
+				<osgi.ws>win32</osgi.ws>
+				<osgi.arch>x86</osgi.arch>
+			</properties>
+		</profile>
+	</profiles>
+</project>

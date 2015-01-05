@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.blackdogit.connectiq.monkeyc/src-gen" editDirectory="/com.blackdogit.connectiq.monkeyc.edit/src"
+    editorDirectory="/com.blackdogit.connectiq.monkeyc.editor/src" modelPluginID="com.blackdogit.connectiq.monkeyc"
+    forceOverwrite="true" modelName="MonkeyC" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="com.blackdogit.connectiq.monkeyc.edit"
+    editorPluginID="com.blackdogit.connectiq.monkeyc.editor" runtimeVersion="2.10">
+  <genPackages prefix="MonkeyC" basePackage="com.blackdogit.connectiq" disposableProviderFactory="true"
+      fileExtensions="mc" ecorePackage="MonkeyC.ecore#/">
+    <genClasses ecoreClass="MonkeyC.ecore#//File">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//File/decls"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//UsingDecl">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//UsingDecl/module"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//UsingDecl/alias"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//Decl"/>
+    <genClasses ecoreClass="MonkeyC.ecore#//Annotation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//Annotation/symbols"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//Symbol">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//Symbol/name"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//VarDecl">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//VarDecl/docs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//VarDecl/annotation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//VarDecl/static"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//VarDecl/hidden"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//VarDecl/vars"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//VarDeclPart">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//VarDeclPart/docs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//VarDeclPart/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//VarDeclPart/expr"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//ConstDecl">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//ConstDecl/docs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//ConstDecl/annotation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//ConstDecl/static"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//ConstDecl/hidden"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//ConstDecl/vars"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//EnumDecl">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//EnumDecl/docs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//EnumDecl/annotation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//EnumDecl/static"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//EnumDecl/hidden"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//EnumDecl/values"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//ClassDecl">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//ClassDecl/docs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//ClassDecl/annotation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//ClassDecl/hidden"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//ClassDecl/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//ClassDecl/superType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//ClassDecl/decls"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//ModuleDecl">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//ModuleDecl/docs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//ModuleDecl/annotation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//ModuleDecl/hidden"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//ModuleDecl/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//ModuleDecl/decls"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//FunctionDecl">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//FunctionDecl/docs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//FunctionDecl/annotation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//FunctionDecl/static"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//FunctionDecl/hidden"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//FunctionDecl/native"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//FunctionDecl/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//FunctionDecl/args"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//FunctionDecl/block"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//Block">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//Block/statements"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//Statement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//Statement/expr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//Statement/trueBlock"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//Statement/falseBlock"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//Statement/elsif"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//Statement/initAssignment"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//Statement/initVars"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//Statement/nextAssignment"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//Statement/block"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//Statement/catches"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//Statement/finally"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//Statement/var"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//Assignment">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//Assignment/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//Assignment/expr"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//CaseStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//CaseStatement/caseExpr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//CaseStatement/statements"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//LValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//LValue/root"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//LValue/parts"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//LValuePart">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//LValuePart/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//LValuePart/index"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//Expr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//Expr/cases"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//TermPart"/>
+    <genClasses ecoreClass="MonkeyC.ecore#//Args">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//Args/args"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//DictionaryElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//DictionaryElement/key"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//DictionaryElement/value"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//AssignmentStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//AssignmentStatement/lvalue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//AssignmentStatement/assignOp"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//BreakStatement"/>
+    <genClasses ecoreClass="MonkeyC.ecore#//OperExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//OperExpr/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//OperExpr/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//OperExpr/right"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//Term">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//Term/root"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//Term/parts"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//ObjectSelection">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//ObjectSelection/name"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//Funcion">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//Funcion/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//Funcion/args"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//ArrayIndex">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//ArrayIndex/index"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//Variable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//Variable/name"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//UnaryExpr">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//UnaryExpr/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//UnaryExpr/right"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//ArrayExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//ArrayExpr/size"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//ArrayExpr/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//DictionaryExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//DictionaryExpr/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//ObjectExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//ObjectExpr/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//ObjectExpr/args"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//NullExpr"/>
+    <genClasses ecoreClass="MonkeyC.ecore#//IntExpr">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//IntExpr/value"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//DoubleExpr">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//DoubleExpr/value"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//StringExpr">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//StringExpr/value"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//SymbolExpr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MonkeyC.ecore#//SymbolExpr/value"/>
+    </genClasses>
+    <genClasses ecoreClass="MonkeyC.ecore#//BooleanExpr">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MonkeyC.ecore#//BooleanExpr/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
