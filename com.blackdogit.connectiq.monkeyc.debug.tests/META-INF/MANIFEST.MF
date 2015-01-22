@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tests of com.blackdogit.connectiq.monkeyc.debug
+Bundle-SymbolicName: com.blackdogit.connectiq.monkeyc.debug.tests
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Black Dog IT
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

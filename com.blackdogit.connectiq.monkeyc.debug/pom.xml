@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>com.blackdogit.connectiq.monkeyc.debug</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<packaging>eclipse-plugin</packaging>
+
+	<parent>
+		<artifactId>com.blackdogit.connectiq.monkeyc.parent</artifactId>
+		<groupId>com.blackdogit.connectiq.monkeyc</groupId>
+		<version>1-SNAPSHOT</version>
+		<relativePath>../com.blackdogit.connectiq.monkeyc.parent</relativePath>
+	</parent>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>gen-clean</id>
+						<phase>clean</phase>
+						<!-- Clean up generated files in all projects -->
+						<configuration>
+							<filesets combine.children="append">
+								<fileset>
+									<directory>${basedir}/xtend-src/</directory>
+								</fileset>
+							</filesets>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.xtend</groupId>
+				<artifactId>xtend-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>

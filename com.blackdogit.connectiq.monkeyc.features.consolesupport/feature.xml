@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.blackdogit.connectiq.monkeyc.features.consolesupport"
+      label="Monkey C Console Support by Black Dog IT"
+      version="1.0.0.qualifier"
+      provider-name="Black Dog IT">
+
+   <requires>
+      <import plugin="org.eclipse.ui.console"/>
+      <import plugin="org.eclipse.ui" version="3.5.0" match="compatible"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.equinox.preferences"/>
+      <import plugin="org.eclipse.debug.core"/>
+      <import plugin="org.eclipse.jface.text"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.ui.editors"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.xtext.xbase.lib"/>
+      <import plugin="org.eclipse.emf.ecore.xcore.lib"/>
+   </requires>
+
+   <plugin
+         id="com.blackdogit.connectiq.monkeyc.consolesupport"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.blackdogit.connectiq.monkeyc.debug"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

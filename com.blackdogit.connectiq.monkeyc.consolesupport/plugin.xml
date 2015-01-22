@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.console.consolePatternMatchListeners">
+      <consolePatternMatchListener
+            class="com.blackdogit.connectiq.monkeyc.consolesupport.internal.PCMatcher"
+            flags="MULTILINE"
+            id="com.blackdogit.connectiq.monkeyc.consolesupport.PCMatcher"
+            regex="@PC = 0x[0-9a-f]+$">
+         <enablement>
+           <test property="org.eclipse.ui.console.consoleTypeTest" value="org.eclipse.debug.ui.ProcessConsoleType"/>
+         </enablement>
+      </consolePatternMatchListener>
+   </extension>
+
+</plugin>
