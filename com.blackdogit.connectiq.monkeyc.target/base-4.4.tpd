@@ -1,0 +1,29 @@
+target "Monkey C Baseline"
+
+with requirements source configurePhase
+
+location updates "http://download.eclipse.org/eclipse/updates/4.4" {
+	org.eclipse.platform.sdk
+	org.eclipse.jdt.feature.group
+	org.eclipse.sdk.ide
+	org.eclipse.jdt.source.feature.group
+	org.eclipse.rcp.feature.group
+	org.eclipse.platform.ide
+	org.eclipse.rcp.source.feature.group
+}
+
+location luna "http://download.eclipse.org/releases/luna/" {
+	org.eclipse.emf.sdk.feature.group
+	org.eclipse.emf.ecore.xcore.feature.group
+	org.eclipse.emf.ecore.xcore.lib.feature.group
+	org.eclipse.emf.mwe.sdk.feature.group
+}
+
+location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/" {
+	org.eclipse.xtend.sdk.feature.group
+	org.eclipse.xtext.sdk.feature.group
+	org.eclipse.xtext.runtime.feature.group
+	org.eclipse.xtext.xbase.lib.feature.group
+}
+
+// eof
