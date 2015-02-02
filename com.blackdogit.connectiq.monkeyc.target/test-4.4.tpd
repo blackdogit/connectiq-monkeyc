@@ -1,0 +1,9 @@
+target "Monkey C Test Baseline"
+
+include "base-4.4.tpd"
+
+location luna "http://download.eclipse.org/releases/luna/" {
+	org.apache.commons.io
+}
+
+// eof

@@ -71,7 +71,7 @@
 		<name>Black Dog IT</name>
 		<url>http://www.blackdogit.com/</url>
 	</organization>
-
+	
 	<url>https://github.com/blackdogit/connectiq-monkeyc/</url>
 	<inceptionYear>2014</inceptionYear>
 
@@ -353,22 +353,6 @@
 				<configuration>
 					<sourceBundle>true</sourceBundle>
 				</configuration>
-			</plugin>
-
-			<!-- Generate source features -->
-			<plugin>
-				<groupId>org.eclipse.tycho.extras</groupId>
-				<artifactId>tycho-source-feature-plugin</artifactId>
-				<version>${tycho-extras.version}</version>
-				<executions>
-					<execution>
-						<id>source-feature</id>
-						<phase>package</phase>
-						<goals>
-							<goal>source-feature</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 

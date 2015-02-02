@@ -5,3 +5,10 @@ Bundle-SymbolicName: com.blackdogit.connectiq.monkeyc.debug.tests
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Black Dog IT
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Import-Package: com.blackdogit.connectiq.monkeyc.debug,
+ com.blackdogit.connectiq.monkeyc.debug.model,
+ org.apache.commons.io;version="2.0.1",
+ org.eclipse.core.resources,
+ org.eclipse.core.runtime;version="3.0.0",
+ org.eclipse.emf.common.util
+Require-Bundle: org.junit;bundle-version="4.11.0"

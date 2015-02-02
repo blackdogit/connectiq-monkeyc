@@ -17,9 +17,10 @@ location luna "http://download.eclipse.org/releases/luna/" {
 	org.eclipse.emf.ecore.xcore.feature.group
 	org.eclipse.emf.ecore.xcore.lib.feature.group
 	org.eclipse.emf.mwe.sdk.feature.group
+	org.apache.commons.io
 }
 
-location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/" {
+location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/releases/" {
 	org.eclipse.xtend.sdk.feature.group
 	org.eclipse.xtext.sdk.feature.group
 	org.eclipse.xtext.runtime.feature.group

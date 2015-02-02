@@ -8,13 +8,19 @@
 	<packaging>pom</packaging>
 
 	<modules>
-	    <module>../com.blackdogit.connectiq.monkeyc.parent</module>
-	    <module>../com.blackdogit.connectiq.monkeyc.target</module>
-	    <module>../com.blackdogit.connectiq.monkeyc</module>
-	    <!-- 
-	    <module>../com.blackdogit.connectiq.monkeyc.ui</module>
-	    <module>../com.blackdogit.connectiq.monkeyc.tests</module>
-	    <module>../com.blackdogit.connectiq.monkeyc.sdk</module>
-	    <module>../com.blackdogit.connectiq.monkeyc.sdk.tests</module> -->
+		<module>../com.blackdogit.connectiq.monkeyc.parent</module>
+		<module>../com.blackdogit.connectiq.monkeyc.target</module>
+		<!-- <module>../com.blackdogit.connectiq.monkeyc</module> -->
+
+		<module>../com.blackdogit.connectiq.monkeyc.debug</module>
+		<module>../com.blackdogit.connectiq.monkeyc.debug.tests</module>
+
+		<module>../com.blackdogit.connectiq.monkeyc.consolesupport</module>
+		<module>../com.blackdogit.connectiq.monkeyc.consolesupport.tests</module>
+
+		<module>../com.blackdogit.connectiq.monkeyc.features.consolesupport</module>
+		<module>../com.blackdogit.connectiq.monkeyc.site</module>
+		<!-- <module>../com.blackdogit.connectiq.monkeyc.ui</module> <module>../com.blackdogit.connectiq.monkeyc.tests</module> 
+			<module>../com.blackdogit.connectiq.monkeyc.sdk</module> <module>../com.blackdogit.connectiq.monkeyc.sdk.tests</module> -->
 	</modules>
 </project>

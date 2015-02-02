@@ -12,11 +12,13 @@ import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.model.RuntimeProcess;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.Position;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.console.IHyperlink;
@@ -84,6 +86,8 @@ public class PCMatcher implements IPatternMatchListenerDelegate {
 				return;
 			String debugInfoFile = launchConf.getAttribute(
 					"connectiq.debugInfo", (String) null);
+			if (debugInfoFile == null)
+				return;
 
 			myDebugInfo = DebugInfoManager.getDebugInfo(debugInfoFile);
 			myGlobalDebugInfo = getGlobalDebugInfo();
@@ -101,6 +105,11 @@ public class PCMatcher implements IPatternMatchListenerDelegate {
 	}
 
 	public void matchFound(PatternMatchEvent event) {
+		/*
+		 * Not initialized... then just ignore the match...
+		 */
+		if (myConsole == null)
+			return;
 		try {
 			final int offset = event.getOffset();
 			final int length = event.getLength();
@@ -111,7 +120,7 @@ public class PCMatcher implements IPatternMatchListenerDelegate {
 			if (le == null)
 				le = findLineEntry(myGlobalDebugInfo, pc);
 			/*
-			 * If we cannot find a proper line entry, then forget it
+			 * If we cannot find a proper line entry, then ignore it
 			 */
 			if (le == null)
 				return;
@@ -220,14 +229,21 @@ public class PCMatcher implements IPatternMatchListenerDelegate {
 
 		@Override
 		public void linkActivated() {
-			if (myFile == null)
+			IWorkbenchWindow activeWindow = PlatformUI.getWorkbench()
+					.getActiveWorkbenchWindow();
+			if (myFile == null) {
+				MessageDialog.openInformation(activeWindow.getShell(),
+						"Find Monkey C Source", "File not found:\n'"
+								+ myLinkEntry.getFilename() + "' line "
+								+ myLinkEntry.getLineNum());
 				return;
+			}
 			try {
 				/*
 				 * Open the editor
 				 */
-				IEditorPart editor = IDE.openEditor(PlatformUI.getWorkbench()
-						.getActiveWorkbenchWindow().getActivePage(), myFile);
+				IEditorPart editor = IDE.openEditor(
+						activeWindow.getActivePage(), myFile);
 				if (editor instanceof ITextEditor) {
 					gotoLine((ITextEditor) editor, myLinkEntry.getLineNum() - 1);
 				}

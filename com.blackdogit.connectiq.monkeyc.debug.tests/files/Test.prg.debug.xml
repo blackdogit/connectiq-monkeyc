@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<debugInfo>
+<pcToLineNum>
+<entry filename="/ConnectIQ/Git/connectiq-apps/MyDistanceHome/source/MCUtils.mc" lineNum="9" pc="268435458" symbol="typeof"/>
+<entry filename="/ConnectIQ/Git/connectiq-apps/MyDistanceHome/source/MCUtils.mc" lineNum="10" pc="268435465" symbol="typeof"/>
+<entry filename="/ConnectIQ/Git/connectiq-apps/MyDistanceHome/source/MCUtils.mc" lineNum="27" pc="268435555" symbol="typeof"/>
+<entry filename="/ConnectIQ/Git/connectiq-apps/MyDistanceHome/source/DistanceUtils.mc" lineNum="11" pc="268435564" symbol="distToString"/>
+<entry filename="/ConnectIQ/Git/connectiq-apps/MyDistanceHome/source/DataField.mc" lineNum="27" pc="268435770" symbol="initialize"/>
+<entry filename="/ConnectIQ/Git/connectiq-apps/MyDistanceHome/source/DataField.mc" lineNum="14" pc="268437524" symbol="&lt;init&gt;"/>
+<entry filename="/ConnectIQ/Git/connectiq-apps/MyDistanceHome/source/App.mc" lineNum="8" pc="268437456" symbol="&lt;init&gt;"/>
+<entry filename="Rez" lineNum="5" pc="268437901" symbol="&lt;init&gt;"/>
+</pcToLineNum>
+<symbolTable>
+<entry id="8389359" symbol="&lt;gre&gt;"/>
+<entry field="true" id="8389274" symbol="searchThreshold"/>
+</symbolTable>
+<localVars/>
+<annotations/>
+<functions>
+<functionEntry name="typeof">
+<param id="obj"/>
+<documentation><![CDATA[<div class="description"> Returns the type of the specified obj as a string<br/> <div class="param"> obj [Object]: the object to test</div><br/> Returns s [String]: the type of the object if found or otherwise "-UNKNON-"<br/></div>]]></documentation>
+</functionEntry>
+</functions>
+</debugInfo>

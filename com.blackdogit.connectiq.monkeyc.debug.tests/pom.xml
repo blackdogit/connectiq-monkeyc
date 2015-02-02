@@ -6,6 +6,10 @@
 
 	<packaging>eclipse-test-plugin</packaging>
 
+	<properties>
+		<!-- <target.platform.type>test</target.platform.type> -->
+	</properties>
+
 	<parent>
 		<artifactId>com.blackdogit.connectiq.monkeyc.parent</artifactId>
 		<groupId>com.blackdogit.connectiq.monkeyc</groupId>
