@@ -277,6 +277,40 @@
 				</executions>
 			</plugin>
 
+			<!-- Generate source plug-ins -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-source-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<executions>
+					<execution>
+						<id>plugin-source</id>
+						<goals>
+							<goal>plugin-source</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<sourceBundle>true</sourceBundle>
+				</configuration>
+			</plugin>
+
+			<!-- Generate source features -->
+			<plugin>
+				<groupId>org.eclipse.tycho.extras</groupId>
+				<artifactId>tycho-source-feature-plugin</artifactId>
+				<version>${tycho-extras.version}</version>
+				<executions>
+					<execution>
+						<id>source-feature</id>
+						<phase>package</phase>
+						<goals>
+							<goal>source-feature</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 			<!-- Then, alter p2-metadata to make the .pack.gz artifact visible from 
 				other modules -->
 			<plugin>
@@ -335,40 +369,6 @@
 					<format>xml</format>
 					<failOnViolation>false</failOnViolation>
 				</configuration>
-			</plugin>
-
-			<!-- Generate source plug-ins -->
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-source-plugin</artifactId>
-				<version>${tycho.version}</version>
-				<executions>
-					<execution>
-						<id>plugin-source</id>
-						<goals>
-							<goal>plugin-source</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<sourceBundle>true</sourceBundle>
-				</configuration>
-			</plugin>
-
-			<!-- Generate source features -->
-			<plugin>
-				<groupId>org.eclipse.tycho.extras</groupId>
-				<artifactId>tycho-source-feature-plugin</artifactId>
-				<version>${tycho-extras.version}</version>
-				<executions>
-					<execution>
-						<id>source-feature</id>
-						<phase>package</phase>
-						<goals>
-							<goal>source-feature</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 

@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-	<feature id="com.blackdogit.connectiq.monkeyc.features.consolesupport">
-		<category name="om.blackdogit.connectiq.monkeyc.category" />
-	</feature>
-	<feature id="com.blackdogit.connectiq.monkeyc.features.consolesupport.source">
-		<category name="om.blackdogit.connectiq.monkeyc.sources.category" />
-	</feature>
-	<category-def name="com.blackdogit.connectiq.monkeyc.category"
-		label="Connect IQ">
-		<description>
-			Various Connect IQ and Monkey C tools made by Black Dog IT.
-		</description>
-	</category-def>
-	<category-def name="com.blackdogit.connectiq.monkeyc.sources.category"
-		label="Connect IQ Sources">
-		<description>
-			Various Connect IQ and Monkey C tools made by Black Dog IT (sources).
-		</description>
-	</category-def>
+   <feature url="features/com.blackdogit.connectiq.monkeyc.features.consolesupport_1.0.0.qualifier.jar" id="com.blackdogit.connectiq.monkeyc.features.consolesupport" version="1.0.0.qualifier">
+      <category name="com.blackdogit.connectiq.monkeyc.category"/>
+   </feature>
+   <feature url="features/com.blackdogit.connectiq.monkeyc.features.consolesupport.source_1.0.0.qualifier.jar" id="com.blackdogit.connectiq.monkeyc.features.consolesupport.source" version="1.0.0.qualifier">
+      <category name="com.blackdogit.connectiq.monkeyc.sources.category"/>
+   </feature>
+   <category-def name="com.blackdogit.connectiq.monkeyc.category" label="Connect IQ">
+      <description>
+         Various Connect IQ and Monkey C tools made by Black Dog IT.
+      </description>
+   </category-def>
+   <category-def name="com.blackdogit.connectiq.monkeyc.sources.category" label="BDIT Connect IQ Developer Resources">
+      <description>
+         Various Connect IQ and Monkey C tools made by Black Dog IT (Developer Resources).
+      </description>
+   </category-def>
 </site>

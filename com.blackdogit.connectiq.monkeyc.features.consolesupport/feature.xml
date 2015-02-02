@@ -5,6 +5,10 @@
       version="1.0.0.qualifier"
       provider-name="Black Dog IT">
 
+   <description>
+      The console feature adds hyperlinks to the Connect IQ Simulator when this prints program counters to link the the actual sources and functions.
+   </description>
+
    <requires>
       <import plugin="org.eclipse.ui.console"/>
       <import plugin="org.eclipse.ui" version="3.5.0" match="compatible"/>
@@ -14,10 +18,11 @@
       <import plugin="org.eclipse.debug.core"/>
       <import plugin="org.eclipse.jface.text"/>
       <import plugin="org.eclipse.ui.ide"/>
-      <import plugin="org.eclipse.ui.editors"/>
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="org.eclipse.xtext.xbase.lib"/>
       <import plugin="org.eclipse.emf.ecore.xcore.lib"/>
+      <import plugin="com.blackdogit.connectiq.monkeyc.debug" version="1.0.0" match="compatible"/>
+      <import plugin="org.eclipse.ui.editors" version="3.8.200" match="greaterOrEqual"/>
    </requires>
 
    <plugin
