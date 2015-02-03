@@ -10,7 +10,7 @@
 		<artifactId>com.blackdogit.connectiq.monkeyc.parent</artifactId>
 		<groupId>com.blackdogit.connectiq.monkeyc</groupId>
 		<version>1-SNAPSHOT</version>
-		<relativePath>../com.blackdogit.connectiq.monkeyc.test.parent</relativePath>
+		<relativePath>../com.blackdogit.connectiq.monkeyc.parent</relativePath>
 	</parent>
 
 	<properties>
