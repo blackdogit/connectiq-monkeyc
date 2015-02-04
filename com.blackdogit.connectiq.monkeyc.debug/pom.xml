@@ -35,6 +35,34 @@
 			</plugin>
 
 			<plugin>
+				<groupId>org.eclipse.xtext</groupId>
+				<artifactId>xtext-maven-plugin</artifactId>
+				<version>${xtext.version}</version>
+
+				<executions>
+					<execution>
+						<id></id>
+						<phase>generate-sources2</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<languages>
+								<language>
+									<setup>org.eclipse.emf.ecore.xcore.XcoreStandaloneSetup</setup>
+									<outputConfigurations>
+										<outputConfiguration>
+											<outputDirectory>target/generated-sources/xcore</outputDirectory>
+										</outputConfiguration>
+									</outputConfigurations>
+								</language>
+							</languages>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
 				<groupId>org.eclipse.xtend</groupId>
 				<artifactId>xtend-maven-plugin</artifactId>
 			</plugin>
