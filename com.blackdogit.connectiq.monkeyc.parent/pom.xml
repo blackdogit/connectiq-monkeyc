@@ -7,6 +7,44 @@
 
 	<packaging>pom</packaging>
 
+	<name>Connect IQ and Monkey C tools by Black Dog IT</name>
+
+	<organization>
+		<name>Black Dog IT</name>
+		<url>http://www.blackdogit.com/</url>
+	</organization>
+
+	<url>https://github.com/blackdogit/connectiq-monkeyc/</url>
+	<inceptionYear>2014</inceptionYear>
+
+	<licenses>
+		<license>
+			<name>Eclipse Public License v1.0</name>
+			<comments>
+        All rights reserved.
+
+        This program and the accompanying materials are made
+        available under the terms of the Eclipse Public License v1.0
+        which accompanies this distribution, and is available at
+        http://www.eclipse.org/legal/epl-v10.htm
+	      </comments>
+		</license>
+	</licenses>
+
+	<scm>
+		<url>https://github.com/blackdogit/connectiq-monkeyc.git</url>
+	</scm>
+
+	<issueManagement>
+		<system>Github</system>
+		<url>https://github.com/blackdogit/connectiq-monkeyc/issues</url>
+	</issueManagement>
+
+	<ciManagement>
+		<system>Travis-ci</system>
+		<url>https://travis-ci.org/blackdogit/connectiq-monkeyc</url>
+	</ciManagement>
+
 	<!-- this is the parent POM from which all modules inherit common settings -->
 	<properties>
 		<product.version>1.0.1</product.version>
@@ -66,38 +104,6 @@
 
 		<platform-version-name>luna</platform-version-name>
 	</properties>
-
-	<organization>
-		<name>Black Dog IT</name>
-		<url>http://www.blackdogit.com/</url>
-	</organization>
-
-	<url>https://github.com/blackdogit/connectiq-monkeyc/</url>
-	<inceptionYear>2014</inceptionYear>
-
-	<licenses>
-		<license>
-			<name>Eclipse Public License v1.0</name>
-			<comments>
-        All rights reserved.
-
-        This program and the accompanying materials are made
-        available under the terms of the Eclipse Public License v1.0
-        which accompanies this distribution, and is available at
-        http://www.eclipse.org/legal/epl-v10.htm
-	      </comments>
-		</license>
-	</licenses>
-
-	<issueManagement>
-		<system>Github</system>
-		<url>https://github.com/blackdogit/connectiq-monkeyc/issues</url>
-	</issueManagement>
-
-	<ciManagement>
-		<system>Travis-ci</system>
-		<url></url>
-	</ciManagement>
 
 	<pluginRepositories>
 		<!-- <pluginRepository> <id>tycho-staged</id> <url>https://oss.sonatype.org/content/repositories/orgeclipsetycho-240/</url> 
