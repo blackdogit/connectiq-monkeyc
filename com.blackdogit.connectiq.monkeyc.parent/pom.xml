@@ -400,7 +400,7 @@
 						</execution>
 					</executions>
 					<configuration>
-						<outputDirectory>xtend-gen</outputDirectory>
+						<outputDirectory>${basedir}/xtend-gen</outputDirectory>
 					</configuration>
 				</plugin>
 				<!--This plugin's configuration is used to store Eclipse m2e settings 
@@ -636,6 +636,9 @@
 								</sources>
 								<sources>
 									<source>${project.build.directory}/emf-gen</source>
+								</sources>
+								<sources>
+									<source>${project.build.directory}/xtend-gen</source>
 								</sources>
 							</configuration>
 						</execution>
