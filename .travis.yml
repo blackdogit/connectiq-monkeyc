@@ -4,4 +4,9 @@ install: true
 before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
-after_failure: echo "=== SUREFIRE REPORTS ===\n" && for F in com.blackdogit.connectiq.*/target/surefire-reports/*.txt; do echo $F && cat $F && echo; done
+after_failure:
+  - echo "=== SUREFIRE REPORTS ==="
+  - for F in com.blackdogit.connectiq.*/target/surefire-reports/*.txt; do echo $F && cat $F && echo; done
+  - echo "=== debug.test/**/.log ==="
+  - find com.blackdogit.connectiq.monkeyc.debug.tests -name .log | xargs cat
+after_success:
