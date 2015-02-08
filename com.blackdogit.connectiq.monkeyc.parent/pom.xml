@@ -221,68 +221,6 @@
 				</executions>
 			</plugin>
 
-			<!-- Prepare for pack200 -->
-			<!-- Cannot be disabled -->
-			<plugin>
-				<groupId>org.eclipse.tycho.extras</groupId>
-				<artifactId>tycho-pack200a-plugin</artifactId>
-				<version>${tycho-extras.version}</version>
-				<executions>
-					<execution>
-						<id>pack200-normalize</id>
-						<goals>
-							<goal>normalize</goal>
-						</goals>
-						<phase>package</phase>
-					</execution>
-				</executions>
-			</plugin>
-
-			<!-- Sign all bundles -->
-			<!-- Controlled in profiles via jarsigner.skip -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jarsigner-plugin</artifactId>
-				<version>1.2</version>
-				<executions>
-					<execution>
-						<id>sign</id>
-						<goals>
-							<goal>sign</goal>
-						</goals>
-						<phase>package</phase>
-					</execution>
-				</executions>
-				<configuration>
-					<keystore>../com.blackdogit.connectiq.monkyc.parent/keys/....p12</keystore>
-					<alias>le-41f7f84a-9f84-430c-853e-a07bbf881217</alias>
-					<storetype>pkcs12</storetype>
-					<arguments>
-						<argument>-sigalg</argument>
-						<argument>MD5withRSA</argument>
-						<argument>-digestalg</argument>
-						<argument>SHA1</argument>
-					</arguments>
-				</configuration>
-			</plugin>
-
-			<!-- Perform pack200 -->
-			<!-- Cannot be disabled -->
-			<plugin>
-				<groupId>org.eclipse.tycho.extras</groupId>
-				<artifactId>tycho-pack200b-plugin</artifactId>
-				<version>${tycho-extras.version}</version>
-				<executions>
-					<execution>
-						<id>pack200-pack</id>
-						<goals>
-							<goal>pack</goal>
-						</goals>
-						<phase>package</phase>
-					</execution>
-				</executions>
-			</plugin>
-
 			<!-- Generate source plug-ins -->
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
@@ -401,6 +339,7 @@
 					</executions>
 					<configuration>
 						<outputDirectory>${basedir}/xtend-gen</outputDirectory>
+						
 					</configuration>
 				</plugin>
 				<!--This plugin's configuration is used to store Eclipse m2e settings 
