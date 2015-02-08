@@ -7,6 +7,6 @@ before_install:
 after_failure:
   - echo "=== SUREFIRE REPORTS ==="
   - for F in com.blackdogit.connectiq.*/target/surefire-reports/*.txt; do echo $F && cat $F && echo; done
-  - echo "=== debug.test/**/.log ==="
-  - find com.blackdogit.connectiq.monkeyc.debug.tests -name .log | xargs cat
+  - echo "=== debug.test/**/*log* ==="
+  - find . -name "*log*" | while read f; do echo ">> $f"; cat "$f"; done
 after_success:
