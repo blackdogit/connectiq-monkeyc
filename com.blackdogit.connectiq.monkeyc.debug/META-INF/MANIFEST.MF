@@ -11,7 +11,7 @@ Require-Bundle: org.eclipse.core.runtime;resolution:=optional;x-installation:=gr
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: com.blackdogit.connectiq.monkeyc.debug,
  com.blackdogit.connectiq.monkeyc.debug.model,
  com.blackdogit.connectiq.monkeyc.debug.model.internal

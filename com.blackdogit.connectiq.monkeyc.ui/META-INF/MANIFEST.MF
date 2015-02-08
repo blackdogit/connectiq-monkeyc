@@ -18,7 +18,7 @@ Require-Bundle: com.blackdogit.connectiq.monkeyc;visibility:=reexport,
  org.eclipse.xtext.ui.codetemplates.ui,
  org.eclipse.compare
 Import-Package: org.apache.log4j
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: com.blackdogit.connectiq.ui.quickfix,
  com.blackdogit.connectiq.ui.contentassist,
  com.blackdogit.connectiq.ui.contentassist.antlr,
