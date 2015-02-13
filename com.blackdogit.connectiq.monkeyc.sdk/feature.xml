@@ -5,6 +5,10 @@
       version="1.0.0.qualifier"
       provider-name="Black Dog IT">
 
+   <url>
+      <update label="Various Connect IQ and Monkey C tools made by Black Dog IT" url="http://blackdogit.github.io/connectiq-monkeyc/repository"/>
+   </url>
+
    <includes
          id="com.blackdogit.connectiq.monkeyc.features.consolesupport"
          version="0.0.0"

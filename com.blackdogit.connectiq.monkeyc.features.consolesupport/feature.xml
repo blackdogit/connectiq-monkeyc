@@ -9,6 +9,10 @@
       The console feature adds hyperlinks to the Connect IQ Simulator when this prints program counters to link the the actual sources and functions.
    </description>
 
+   <url>
+      <update label="Various Connect IQ and Monkey C tools made by Black Dog IT" url="http://blackdogit.github.io/connectiq-monkeyc/repository"/>
+   </url>
+
    <requires>
       <import plugin="org.eclipse.ui.console"/>
       <import plugin="org.eclipse.ui" version="3.5.0" match="compatible"/>
