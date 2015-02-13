@@ -35,12 +35,6 @@
 				</configuration>
 				<executions>
 					<execution>
-						<id>materialize-products</id>
-						<goals>
-							<goal>materialize-products</goal>
-						</goals>
-					</execution>
-					<execution>
 						<id>archive-products</id>
 						<goals>
 							<goal>archive-products</goal>
