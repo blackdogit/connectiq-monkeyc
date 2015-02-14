@@ -232,10 +232,14 @@ public class PCMatcher implements IPatternMatchListenerDelegate {
 			IWorkbenchWindow activeWindow = PlatformUI.getWorkbench()
 					.getActiveWorkbenchWindow();
 			if (myFile == null) {
+				String mess = "File not found:\n'" + "File "
+						+ myLinkEntry.getFilename() + "' line "
+						+ myLinkEntry.getLineNum();
+				if (myLinkEntry.getSymbol() != null) {
+					mess += "\nFunction " + myLinkEntry.getSymbol();
+				}
 				MessageDialog.openInformation(activeWindow.getShell(),
-						"Find Monkey C Source", "File not found:\n'"
-								+ myLinkEntry.getFilename() + "' line "
-								+ myLinkEntry.getLineNum());
+						"Find Monkey C Source", mess);
 				return;
 			}
 			try {

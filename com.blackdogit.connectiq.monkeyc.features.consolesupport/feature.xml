@@ -2,7 +2,7 @@
 <feature
       id="com.blackdogit.connectiq.monkeyc.features.consolesupport"
       label="Monkey C Console Support by Black Dog IT"
-      version="1.0.0.qualifier"
+      version="1.1.0.qualifier"
       provider-name="Black Dog IT">
 
    <description>
