@@ -71,7 +71,12 @@ class PrgDebugReader {
 		// Go through all 'entries'
 		for (n : top.children.filter[nodeType == Node::ELEMENT_NODE]) {
 			val e = IDebugInfoFactory.eINSTANCE.createLineEntry
-			e.filename = n.attr("filename")
+			var fn = n.attr("filename")
+			var i = 0
+			while ((i = fn.indexOf("\\\\")) >= 0) {
+				fn = fn.substring(0, i)+"/"+fn.substring(i+2)
+			}
+			e.filename = fn
 			e.lineNum = Integer.parseInt(n.attr("lineNum"))
 			e.symbol = n.attr("symbol")
 			e.pc = Integer.parseInt(n.attr("pc"))

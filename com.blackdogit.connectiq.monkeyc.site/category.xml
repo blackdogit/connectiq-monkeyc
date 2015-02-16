@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/com.blackdogit.connectiq.monkeyc.features.consolesupport_1.1.0.qualifier.jar" id="com.blackdogit.connectiq.monkeyc.features.consolesupport" version="1.1.0.qualifier">
+   <feature url="features/com.blackdogit.connectiq.monkeyc.features.consolesupport_1.1.1.qualifier.jar" id="com.blackdogit.connectiq.monkeyc.features.consolesupport" version="1.1.1.qualifier">
       <category name="com.blackdogit.connectiq.monkeyc.category"/>
    </feature>
-   <feature url="features/com.blackdogit.connectiq.monkeyc.features.consolesupport.source_1.1.0.qualifier.jar" id="com.blackdogit.connectiq.monkeyc.features.consolesupport.source" version="1.1.0.qualifier">
+   <feature url="features/com.blackdogit.connectiq.monkeyc.features.consolesupport.source_1.1.1.qualifier.jar" id="com.blackdogit.connectiq.monkeyc.features.consolesupport.source" version="1.1.1.qualifier">
       <category name="com.blackdogit.connectiq.monkeyc.sources.category"/>
    </feature>
    <category-def name="com.blackdogit.connectiq.monkeyc.category" label="Connect IQ Features">
