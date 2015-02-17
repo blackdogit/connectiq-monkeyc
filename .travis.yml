@@ -1,5 +1,5 @@
 language: java
-script: "mvn -Pci -X clean verify -f com.blackdogit.connectiq.monkeyc.root/pom.xml"
+script: "mvn -Pci clean verify -f com.blackdogit.connectiq.monkeyc.root/pom.xml"
 install: true
 notifications:
   email:

@@ -115,7 +115,7 @@ public class PCMatcher implements IPatternMatchListenerDelegate {
 			final int length = event.getLength();
 			final IDocument doc = myConsole.getDocument();
 			final String loc = doc.get(offset + 8, length - 8);
-			int pc = Integer.parseUnsignedInt(loc, 16);
+			int pc = Integer.parseInt(loc, 16);
 			ILineEntry le = findLineEntry(myDebugInfo, pc);
 			if (le == null)
 				le = findLineEntry(myGlobalDebugInfo, pc);
