@@ -32,6 +32,8 @@ after_success:
   - rm -rf "${PAGES_DIR}/a"/*
   - cp -r "${MC_DIR}/com.blackdogit.connectiq.monkeyc.site/target/repository" "${PAGES_DIR}/a"
   - ls -Rl "${PAGES_DIR}"
+  - git add --all .
+  - echo git commit -m "updated for travis build #${TRAVIS_BUILD_NUMBER}"
 env:
   global:
     secure: LZgkK1L6/gIDbGM4o2YIUWK0VpbjMA9KUGk77IO7jNqeRKjuFa8I1De92+LtGcTcALqThRRAUzgB68XG4LE3Eo9i9PUEwzSjQIiTWdtZlErCz368SljZz2ocIHhd6vIeOVkElTV8S9LVaOlKBmji3HhcaIfK6KUZR43Pgy4qc7Y=
