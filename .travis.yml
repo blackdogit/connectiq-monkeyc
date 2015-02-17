@@ -1,6 +1,10 @@
 language: java
 script: "mvn -Pci -X clean verify -f com.blackdogit.connectiq.monkeyc.root/pom.xml"
 install: true
+notifications:
+  email:
+    recipients:
+      - tonny.madsen@blackdogit.com
 before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
