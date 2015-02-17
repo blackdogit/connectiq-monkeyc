@@ -4,7 +4,7 @@ script:
   - #set
   - #echo "=== export ==="
   - #export
-  - mvn -Pci -Dbuild.number=$"{TRAVIS_BUILD_NUMBER}" -Dbuild.branch=$"{TRAVIS_BRANCH}" clean verify -f com.blackdogit.connectiq.monkeyc.root/pom.xml
+  - mvn -Pci -Dbuild.number="${TRAVIS_BUILD_NUMBER}" -Dbuild.branch="${TRAVIS_BRANCH}" clean verify -f com.blackdogit.connectiq.monkeyc.root/pom.xml
 install: true
 notifications:
   email:
@@ -23,9 +23,10 @@ after_success:
   - set
   - echo "=== export ==="
   - export
-  - MC_DIR="$(pwd)"
-  - PAGES_DIR=/usr/tmp/pages
-  - git clone -b gh-pages https://github.com/blackdogit/connectiq-monkeyc.git "$[PAGES_DIR]"
+  - export MC_DIR="$(pwd)"
+  - export PAGES_DIR=/usr/tmp/pages
+  - mkdir "${PAGES_DIR}"
+  - git clone --depth=50 --branch=gh-pages --single-branch https://github.com/blackdogit/connectiq-monkeyc.git ${PAGES_DIR}
   - cd "${PAGES_DIR}"
   - git config credential.helper "store --file="${PAGES_DIR}/.git/credentials"
   - echo "https://${GH_TOKEN}:@github.com" > "${PAGES_DIR}/.git/credentials"
