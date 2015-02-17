@@ -100,7 +100,7 @@
 
 		<!-- -Djava.ext.dirs argument used for the MacOSX platform - see profiles 
 			below. -->
-		<java.ext.dirs.args />
+		<java.ext.dirs.args>-Djava.ext.dirs=${java.home}/lib/ext</java.ext.dirs.args>
 
 		<platform-version-name>luna</platform-version-name>
 	</properties>
@@ -519,9 +519,7 @@
 							<include>**/*Test.java</include>
 							<include>**/*TestCase.java</include>
 						</includes>
-						<argLine>${java.test.args} -Dcom.....uiPort=${com.....uiPort}
-							${java.mem.args} ${java.debug.args} ${java.os.args}
-							${java.ext.dirs.args}</argLine>
+						<argLine>${java.test.args} -Dcom.....uiPort=${com.....uiPort} ${java.mem.args} ${java.debug.args} ${java.os.args} ${java.ext.dirs.args}</argLine>
 
 						<environmentVariables combine.children="append">
 							<TARGET.ARCHS>${target.archs}</TARGET.ARCHS>
