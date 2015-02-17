@@ -1,10 +1,10 @@
 language: java
 script:
-  - echo "=== set ==="
-  - set
-  - echo "=== export ==="
-  - export
-  - mvn -Pci clean verify -f com.blackdogit.connectiq.monkeyc.root/pom.xml
+  - #echo "=== set ==="
+  - #set
+  - #echo "=== export ==="
+  - #export
+  - mvn -Pci -Dbuild.number=$"{TRAVIS_BUILD_NUMBER}" -Dbuild.branch=$"{TRAVIS_BRANCH}" clean verify -f com.blackdogit.connectiq.monkeyc.root/pom.xml
 install: true
 notifications:
   email:
@@ -16,8 +16,8 @@ before_install:
 after_failure:
   - echo "=== SUREFIRE REPORTS ==="
   - for F in com.blackdogit.connectiq.*/target/surefire-reports/*.txt; do echo $F && cat $F && echo; done
-  - echo "=== debug.test/**/*log* ==="
-  - find . -name "*log*" | while read f; do echo ">> $f"; cat "$f"; done
+  - echo "=== *log* ==="
+  - find . -type f -name "*log*" | while read f; do echo ">> $f"; cat "$f"; done
 after_success:
   - echo "=== set ==="
   - set
