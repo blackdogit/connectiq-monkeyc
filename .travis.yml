@@ -24,7 +24,7 @@ after_success:
   - echo "=== export ==="
   - export
   - export MC_DIR="$(pwd)"
-  - export PAGES_DIR=/usr/tmp/pages
+  - export PAGES_DIR="${HOME}/pages"
   - mkdir "${PAGES_DIR}"
   - git clone --depth=50 --branch=gh-pages --single-branch https://github.com/blackdogit/connectiq-monkeyc.git ${PAGES_DIR}
   - cd "${PAGES_DIR}"
