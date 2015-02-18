@@ -18,7 +18,7 @@ git config --global user.email "build-user@blackdogit.com"
 git config --global user.name "Travis Build"
 
 REPOSITORY_BASEDIR="${PAGES_DIR}"
-[[ "${TRAVIS_BRANCH}" != master ] || REPOSITORY_BASEDIR="${REPOSITORY_BASEDIR}/beta"
+[[ "${TRAVIS_BRANCH}" != master ]] || REPOSITORY_BASEDIR="${REPOSITORY_BASEDIR}/beta"
 
 # Replace the old repository
 rm -rf "${REPOSITORY_BASEDIR}"/repository
