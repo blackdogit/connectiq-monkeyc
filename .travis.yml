@@ -19,7 +19,7 @@ after_failure:
   - echo "=== *log* ==="
   - find . -type f -name "*log*" | while read f; do echo ">> $f"; cat "$f"; done
 after_success:
-  - sh ./releaseRepository.sh
+  - ksh ./releaseRepository.sh
 env:
   global:
     secure: LZgkK1L6/gIDbGM4o2YIUWK0VpbjMA9KUGk77IO7jNqeRKjuFa8I1De92+LtGcTcALqThRRAUzgB68XG4LE3Eo9i9PUEwzSjQIiTWdtZlErCz368SljZz2ocIHhd6vIeOVkElTV8S9LVaOlKBmji3HhcaIfK6KUZR43Pgy4qc7Y=
