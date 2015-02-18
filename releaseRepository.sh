@@ -31,7 +31,8 @@ git add --all .
 ls -Rl "${PAGES_DIR}"
 git status 
 
-# Commit the changes
+# Commit and push the changes
 git commit -m "updated for travis branch ${TRAVIS_BRANCH} build ${TRAVIS_BUILD_NUMBER}"
+git push
 
 exit 0
