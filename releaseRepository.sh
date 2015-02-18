@@ -18,9 +18,10 @@ git config --global user.email "build-user@blackdogit.com"
 git config --global user.name "Travis Build"
 
 REPOSITORY_BASEDIR="${PAGES_DIR}"
-[[ "${TRAVIS_BRANCH}" != master ]] || REPOSITORY_BASEDIR="${REPOSITORY_BASEDIR}/beta"
+[[ "${TRAVIS_BRANCH}" != master ]] && REPOSITORY_BASEDIR="${REPOSITORY_BASEDIR}/beta"
 
 # Replace the old repository
+mkdir -p "${REPOSITORY_BASEDIR}"
 rm -rf "${REPOSITORY_BASEDIR}"/repository
 cp -r "${MC_DIR}/com.blackdogit.connectiq.monkeyc.site/target/repository" "${REPOSITORY_BASEDIR}"
 
