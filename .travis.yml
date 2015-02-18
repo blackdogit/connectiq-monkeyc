@@ -28,13 +28,14 @@ after_success:
   - mkdir "${PAGES_DIR}"
   - git clone --depth=50 --branch=gh-pages --single-branch https://github.com/blackdogit/connectiq-monkeyc.git ${PAGES_DIR}
   - cd "${PAGES_DIR}"
-  - git config credential.helper "store --file="${PAGES_DIR}/.git/credentials"
+  - git config credential.helper store --file="${PAGES_DIR}/.git/credentials"
   - echo "https://${GH_TOKEN}:@github.com" > "${PAGES_DIR}/.git/credentials"
   - rm -rf "${PAGES_DIR}/a"/*
   - cp -r "${MC_DIR}/com.blackdogit.connectiq.monkeyc.site/target/repository" "${PAGES_DIR}/a"
   - ls -Rl "${PAGES_DIR}"
   - git add --all .
-  - echo git commit -m "updated for travis build #${TRAVIS_BUILD_NUMBER}"
+  - git status 
+  - ["${TRAVIS_BRANCH}" = master] && git commit -m "updated for travis build ${TRAVIS_BUILD_NUMBER}"
 env:
   global:
     secure: LZgkK1L6/gIDbGM4o2YIUWK0VpbjMA9KUGk77IO7jNqeRKjuFa8I1De92+LtGcTcALqThRRAUzgB68XG4LE3Eo9i9PUEwzSjQIiTWdtZlErCz368SljZz2ocIHhd6vIeOVkElTV8S9LVaOlKBmji3HhcaIfK6KUZR43Pgy4qc7Y=
