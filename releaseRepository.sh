@@ -8,12 +8,12 @@ export PAGES_DIR="${HOME}/pages"
 
 # Check out the current pages
 mkdir "${PAGES_DIR}"
-git clone --depth=50 --branch=gh-pages --single-branch https://github.com/blackdogit/connectiq-monkeyc.git ${PAGES_DIR}
+git clone --depth=50 --branch=gh-pages --single-branch "https://${GH_TOKEN}:@github.com/blackdogit/connectiq-monkeyc.git" ${PAGES_DIR}
 cd "${PAGES_DIR}"
 
 # Configure the pages, so we can commit
-git config credential.helper store --file="${PAGES_DIR}/.git/credentials"
-echo "https://${GH_TOKEN}:@github.com" > "${PAGES_DIR}/.git/credentials"
+#git config credential.helper store --file="${PAGES_DIR}/.git/credentials"
+#echo "https://${GH_TOKEN}:@github.com" > "${PAGES_DIR}/.git/credentials"
 git config --global user.email "build-user@blackdogit.com"
 git config --global user.name "Travis Build"
 
